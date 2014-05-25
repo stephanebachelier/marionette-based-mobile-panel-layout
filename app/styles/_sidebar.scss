@@ -1,0 +1,46 @@
+.panel-left {
+  padding: 0 1em;
+  font-size: 1.4em;
+
+
+  a {
+    text-decoration: none;
+    line-height: 1.3em;
+    padding: 0.5em;
+  }
+  li {
+    list-style-type: none;
+    padding: 0.4em 0;
+  }
+}
+
+.sidebar__picture {
+  border-radius: 40px;
+  margin: 1em auto 0.5em;
+  display: block; // to trigger alignment
+  border: thin solid rgba(0, 0, 0, .1);
+}
+
+.sidebar__username {
+  text-align: center;
+  margin: 0;
+  font-size: 1em;
+}
+
+.sidebar__nav, .sidebar__bottom__nav {
+  padding: 1em 0 0 0;
+  margin: 0;
+}
+
+.sidebar__bottom__nav {
+  position: relative;
+  bottom: 0;
+}
+
+.sidebar__bottom__logout {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  right: 1em;
+  background: #6F6F6F;
+}

@@ -1,0 +1,59 @@
+@mixin panel {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.panel-left {
+  @include panel;
+  left: 0;
+  right: $open-panel-margin;
+}
+
+.panel-right {
+  @include panel;
+  left: $open-panel-margin;
+  right: 0;
+
+  .bar-nav {
+    left: $open-panel-margin;
+  }
+}
+
+.left-panel {
+  .panel-left {
+    visibility: visible;
+  }
+  .panel-right {
+    visibility: hidden;
+  }
+}
+
+.panel-open.left-panel {
+  .content-wrapper {
+    -webkit-transform: translateX(100-$open-panel-margin);
+  }
+}
+
+.right-panel {
+  .panel-left {
+    visibility: hidden;
+  }
+  .panel-right {
+    visibility: visible;
+  }
+}
+
+.panel-open.right-panel {
+  .content-wrapper {
+    -webkit-transform: translateX(-100+$open-panel-margin);
+  }
+}
+
+.panel-open {
+  .content-wrapper {
+    overflow: hidden;
+  }
+}
