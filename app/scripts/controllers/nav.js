@@ -2,18 +2,17 @@ define([
   'marionette',
   'controllers/panel',
   'views/panel',
-  'views/main'
+  'views/main',
+  'views/nav'
 ],
 
-function (Marionette, PanelController, PanelLayout, MainView) {
+function (Marionette, PanelController, PanelLayout, MainView, NavView) {
   'use strict';
 
   return Marionette.Controller.extend({
     initialize: function (options) {
       this.region = options.region;
-    },
 
-    home: function () {
       this.layout = this.region.show(new PanelLayout()).currentView;
       this.controller = new PanelController({
         ui: {
@@ -24,8 +23,12 @@ function (Marionette, PanelController, PanelLayout, MainView) {
           rightButton: '.btn-aside'
         }
       });
+    },
+
+    home: function () {
       // show main content
       this.layout.main.show(new MainView());
+      this.layout.leftPanel.show(new NavView());
     }
   });
 });
