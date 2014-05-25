@@ -1,13 +1,31 @@
 define([
-  'marionette'
+  'marionette',
+  'controllers/panel',
+  'views/panel',
+  'views/main'
 ],
 
-function (Marionette) {
+function (Marionette, PanelController, PanelLayout, MainView) {
   'use strict';
 
   return Marionette.Controller.extend({
+    initialize: function (options) {
+      this.region = options.region;
+    },
+
     home: function () {
-      console.log('home');
+      this.layout = this.region.show(new PanelLayout()).currentView;
+      this.controller = new PanelController({
+        ui: {
+          container: '.container',
+          leftPanel: '.sidebar--panel',
+          rightPanel: '.contextual--panel',
+          leftButton: '.btn-nav',
+          rightButton: '.btn-aside'
+        }
+      });
+      // show main content
+      this.layout.main.show(new MainView());
     }
   });
 });

@@ -27,8 +27,6 @@ function (Marionette, $, _) {
   var PanelController = Marionette.Controller.extend({
 
     initialize: function (options) {
-      this.region = options.region;
-
       // use marionette bind ui logic
       this.ui = options.ui;
       this.$ = $;

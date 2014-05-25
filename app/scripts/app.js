@@ -1,42 +1,34 @@
 define([
   'marionette',
   'backbone',
-  'controllers/panel',
   'controllers/nav',
   'routers/nav'
 ],
 
-function (Marionette, Backbone, PanelController, NavController, NavRouter) {
+function (Marionette, Backbone, NavController, NavRouter) {
   'use strict';
 
   return function () {
     var app = new Marionette.Application();
 
     app.addRegions({
-      sidebar: '.sidebar--panel',
-      panel: '.contextual--panel',
-      main: '.main--content',
-      nav: '.main--nav'
+      launching: '.launching',
+      container: '.container'
     });
 
     app.addInitializer(function () {
-      this.navController = new PanelController({
-        ui: {
-          container: '.container',
-          leftPanel: '.sidebar--panel',
-          rightPanel: '.contextual--panel',
-          leftButton: '.btn-nav',
-          rightButton: '.btn-aside'
-        }
-      });
-
       this.router = new NavRouter({
-        controller: new NavController()
+        controller: new NavController({region: app.container})
       });
     });
 
     app.addInitializer(function () {
-      Backbone.history.start();
+      // add a timer to fake a launch screen
+      setTimeout(function () {
+        Backbone.history.start();
+        // remove launching screen
+        document.querySelector(app.launching.el).remove();
+      }, 1000);
     });
 
     return app;
