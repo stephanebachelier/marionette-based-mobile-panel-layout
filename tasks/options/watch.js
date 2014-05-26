@@ -1,5 +1,4 @@
 /*global module*/
-'use strict';
 
 module.exports = {
   options: {
@@ -31,7 +30,8 @@ module.exports = {
   },
   handlebars: {
     files: [
-      '<%= yeoman.app %>/scripts/templates/**/*.hbs'
+      '<%= yeoman.app %>/scripts/templates/**/*.hbs',
+      '<%= yeoman.app %>/scripts/modules/**/templates/**/*.hbs'
     ],
     tasks: ['handlebars']
   },

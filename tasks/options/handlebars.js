@@ -1,15 +1,20 @@
 /*global module*/
-'use strict';
 
 module.exports = function (grunt) {
+  'use strict';
+
   return {
     compile: {
       options: {
         amd: true,
         namespace: 'templates',
         processName: function (filePath) {
-          var matches = filePath.match(new RegExp(grunt.config('yeoman').app + '\/scripts\/templates\/(.*).hbs'));
-          return matches ? matches[1] : filePath;
+          var matches = filePath.match(new RegExp('scripts/(modules/(\\w+)/templates|templates)\/(.*).hbs'));
+          if (!matches) {
+            return filePath;
+          }
+          grunt.verbose.debug('found template [' + matches[3] + '] in module [' + matches[2] + ']');
+          return (matches[2] ? matches[2] + '/' : '') + matches[3];
         },
         processContent: function (content) {
           content = content.replace(/^[\x20\t]+/mg, '').replace(/[\x20\t]+$/mg, '');
@@ -19,7 +24,10 @@ module.exports = function (grunt) {
         }
       },
       files: {
-        '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/**/*.hbs']
+        '.tmp/scripts/templates.js': [
+          '<%= yeoman.app %>/scripts/templates/**/*.hbs',
+          '<%= yeoman.app %>/scripts/modules/**/templates/**/*.hbs'
+        ]
       }
     }
   };
