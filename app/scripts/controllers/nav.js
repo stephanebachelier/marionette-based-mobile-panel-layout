@@ -23,12 +23,13 @@ function (Marionette, PanelController, PanelLayout, MainView, NavView) {
           rightButton: '.btn-aside'
         }
       });
+      // render nav view
+      this.layout.leftPanel.show(new NavView());
     },
 
     home: function () {
       // show main content
       this.layout.main.show(new MainView());
-      this.layout.leftPanel.show(new NavView());
     }
   });
 });
