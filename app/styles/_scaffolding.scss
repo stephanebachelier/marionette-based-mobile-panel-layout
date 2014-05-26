@@ -33,22 +33,20 @@ body {
   position: relative;
   outline: 1px solid rgba(0,0,0,0);
   z-index: 10;
-  -webkit-transform: translateZ(0) translateX(0) rotateY(0deg); /* reset transforms (Chrome bug) */
-  transform: translateZ(0) translateX(0) rotateY(0deg);
-  -webkit-transition: -webkit-transform 0.5s;
-  -webkit-box-shadow: 0px 0px 5px 0px #656565;
-  -moz-box-shadow: 0px 0px 5px 0px #656565;
-  -o-box-shadow: 0px 0px 5px 0px #656565;
-  box-shadow: 0px 0px 5px 0px #656565;
+  @include transform(translateZ(0) translateX(0) rotateY(0deg)); /* reset transforms (Chrome bug) */
+  //-webkit-transition: -webkit-transform 0.5s;
+  @include transition-property(transform);
+  @include transition-duration(0.5s);
+  @include box-shadow(0 0 5px 0 #656565);
 
 }
 
 
 /* fix ratchet issue */
 .content > .table-view:first-child {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .content > .table-view {
-  margin-botton: 0px;
+  margin-bottom: 0;
 }

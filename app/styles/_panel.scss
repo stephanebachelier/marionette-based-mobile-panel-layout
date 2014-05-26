@@ -33,7 +33,7 @@
 
 .panel-open.left-panel {
   .content-wrapper {
-    -webkit-transform: translateX(100-$open-panel-margin);
+    @include transform(translateX(100-$open-panel-margin));
   }
 }
 
@@ -48,7 +48,7 @@
 
 .panel-open.right-panel {
   .content-wrapper {
-    -webkit-transform: translateX(-100+$open-panel-margin);
+    @include transform(translateX(-100+$open-panel-margin));
   }
 }
 

@@ -1,3 +1,6 @@
 {
-  "box-sizing": false
+  "box-sizing": false,
+  "import": false,
+  "adjoining-classes": false,
+  "fallback-colors": false
 }
