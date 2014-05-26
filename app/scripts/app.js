@@ -17,8 +17,22 @@ function (Marionette, Backbone, NavController, NavRouter) {
     });
 
     app.addInitializer(function () {
+      var controller = new NavController({region: app.container});
       this.router = new NavRouter({
-        controller: new NavController({region: app.container})
+        controller: controller
+      });
+
+      // keep track of application panel layout
+      app.layout = controller.layout;
+    });
+
+    app.addInitializer(function () {
+      var modules = [];
+
+      require(['#user/index'], function (UserModule) {
+        modules.push(new UserModule({
+          region: app.layout.main
+        }));
       });
     });
 
